@@ -1,0 +1,2272 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dewan Perkahwinan & Acara World Youth Foundation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-gold: #d4af37;
+        --primary-gold-hover: #aa820a;
+        --secondary-navy: #0f172a;
+        --accent-blue: #1e3a8a;
+        --bg-offwhite: #f8fafc;
+        --surface-white: #ffffff;
+        --text-dark: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+        --radius: 12px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      body {
+        background-color: var(--bg-offwhite);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3,
+      .brand-font {
+        font-family: "Playfair Display", serif;
+      }
+      /* Header & Navigasi */
+      header {
+        background-color: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 0.8rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-md);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      }
+      .logo {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo img {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+      }
+      .logo span span {
+        color: var(--primary-gold);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: #e2e8f0;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      nav ul li a:hover {
+        color: var(--primary-gold);
+      }
+      /* Hero Section */
+      .hero-slider {
+        position: relative;
+        height: 85vh;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition:
+          opacity 1.2s ease-in-out,
+          transform 6s ease-out;
+        transform: scale(1.05);
+        z-index: 1;
+      }
+      .slide.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.7) 0%,
+          rgba(15, 23, 42, 0.85) 100%
+        );
+        z-index: 3;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 4;
+        color: white;
+        text-align: center;
+        padding: 0 20px;
+        max-width: 850px;
+      }
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      .hero-content p {
+        font-size: 1.25rem;
+        margin-bottom: 35px;
+        color: #e2e8f0;
+        font-weight: 300;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        z-index: 5;
+        border-radius: 50%;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slider-btn:hover {
+        background: var(--primary-gold);
+        border-color: var(--primary-gold);
+      }
+      .prev-btn {
+        left: 30px;
+      }
+      .next-btn {
+        right: 30px;
+      }
+      .dots-container {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 5;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .dot.active {
+        background: var(--primary-gold);
+        width: 30px;
+        border-radius: 20px;
+      }
+      /* Butang Utama */
+      .btn {
+        padding: 14px 32px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-gold) 0%,
+          #b89020 100%
+        );
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        background: linear-gradient(135deg, #e5be3e 0%, #c49b23 100%);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary-gold);
+        color: white;
+        box-shadow: none;
+      }
+      .btn-outline:hover {
+        background: var(--primary-gold);
+        color: white;
+      }
+      .btn-danger {
+        background: #ef4444;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+      }
+      .btn-danger:hover {
+        background: #dc2626;
+      }
+      /* Seksyen Utama */
+      .section {
+        padding: 5rem 8%;
+        text-align: center;
+      }
+      .section h2 {
+        color: var(--secondary-navy);
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .section-subtitle {
+        color: var(--text-muted);
+        max-width: 650px;
+        margin: 0 auto 3rem auto;
+        font-size: 1.05rem;
+      }
+      .offwhite-section {
+        background-color: var(--bg-offwhite);
+        color: var(--text-dark);
+      }
+      /* Kalendar Diselaraskan Ke Off-White */
+      .calendar-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--surface-white);
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+      }
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      .calendar-header button {
+        background: var(--bg-offwhite);
+        border: 1px solid var(--border-color);
+        color: var(--secondary-navy);
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+      .calendar-header button:hover {
+        background: var(--primary-gold);
+        color: white;
+        border-color: var(--primary-gold);
+      }
+      .calendar-header h3 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        color: var(--secondary-navy);
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+      }
+      .day-name {
+        font-weight: 700;
+        padding: 10px 0;
+        color: var(--primary-gold-hover);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+      .calendar-day {
+        padding: 12px 5px;
+        border-radius: 10px;
+        background: var(--bg-offwhite);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 65px;
+        border: 1px solid var(--border-color);
+        color: var(--text-dark);
+      }
+      .calendar-day.empty {
+        background: transparent;
+        border: none;
+        cursor: default;
+      }
+      .calendar-day.available:hover {
+        background: #dcfce7;
+        border-color: #22c55e;
+        transform: translateY(-2px);
+      }
+      .calendar-day.booked {
+        background: #fee2e2;
+        color: #991b1b;
+        border-color: #fca5a5;
+        cursor: not-allowed;
+      }
+      .calendar-legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 2rem;
+        font-size: 0.95rem;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .legend-box {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+      .legend-box.available {
+        background: #dcfce7;
+        border: 1px solid #22c55e;
+      }
+      .legend-box.booked {
+        background: #fee2e2;
+        border: 1px solid #ef4444;
+      }
+      /* Kad & Fasiliti */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      .card {
+        background: var(--surface-white);
+        padding: 2.5rem 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        text-align: left;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-gold);
+      }
+      .card h3 {
+        color: var(--secondary-navy);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+      }
+      .card p {
+        color: var(--text-muted);
+        font-size: 0.98rem;
+      }
+      .package-card {
+        padding: 0;
+        overflow: hidden;
+        max-width: 450px;
+        margin: 0 auto;
+        border-radius: 16px;
+      }
+      .card-img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+      }
+      .package-content {
+        padding: 2rem;
+      }
+      .price {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-gold);
+        margin: 10px 0;
+        font-family: "Playfair Display", serif;
+      }
+      /* Galeri Elegan Moden */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+      .gallery-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        background: var(--surface-white);
+        cursor: pointer;
+        aspect-ratio: 4 / 3;
+      }
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .gallery-card:hover img {
+        transform: scale(1.08);
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 40%,
+          rgba(15, 23, 42, 0.85) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+      }
+      .gallery-info h4 {
+        color: #ffffff;
+        font-size: 1.15rem;
+        margin-bottom: 4px;
+      }
+      .gallery-info p {
+        color: var(--primary-gold);
+        font-size: 0.85rem;
+      }
+      /* Styles untuk Seksyen Layout Dewan */
+      .layout-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .layout-card {
+        background: var(--surface-white);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .layout-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-gold);
+      }
+      .layout-card h3 {
+        color: var(--secondary-navy);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+      .layout-img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        object-fit: contain;
+      }
+
+      /* Modals General */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(6px);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .modal-content {
+        background-color: var(--surface-white);
+        padding: 2.5rem;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 850px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: var(--shadow-lg);
+      }
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: color 0.3s;
+        line-height: 1;
+      }
+      .close-btn:hover {
+        color: var(--secondary-navy);
+      }
+      /* Lightbox Gambar Besar MODEN */
+      .lightbox-modal {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        inset: 0;
+        background: rgba(11, 15, 25, 0.95);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .lightbox-container {
+        position: relative;
+        max-width: 90vw;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .lightbox-img {
+        max-width: 100%;
+        max-height: 75vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .lightbox-caption {
+        color: white;
+        margin-top: 18px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+      }
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 30px;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      .lightbox-arrow {
+        pointer-events: auto;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+      .lightbox-arrow:hover {
+        background: var(--primary-gold);
+        color: var(--secondary-navy);
+        border-color: var(--primary-gold);
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .lightbox-close:hover {
+        color: var(--primary-gold);
+      }
+      /* Borang & Elemen Input */
+      .form-group {
+        margin-bottom: 1.2rem;
+        text-align: left;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--secondary-navy);
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background-color: var(--bg-offwhite);
+        transition: border 0.3s;
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary-gold);
+        background-color: #ffffff;
+      }
+      .payment-info {
+        background: #fffdf5;
+        border: 1px dashed var(--primary-gold);
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 1.2rem;
+        text-align: left;
+      }
+      .tc-box {
+        margin-top: 1.2rem;
+        padding: 18px;
+        background-color: var(--bg-offwhite);
+        border-left: 4px solid var(--primary-gold);
+        border-radius: 6px;
+        font-size: 0.88rem;
+        color: var(--text-dark);
+        text-align: left;
+      }
+      .tc-box ol {
+        margin-left: 20px;
+        margin-top: 8px;
+      }
+      .tc-box li {
+        margin-bottom: 6px;
+      }
+      .lampiran-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        text-align: left;
+        margin-top: 10px;
+      }
+      .lampiran-table th,
+      .lampiran-table td {
+        border: 1px solid var(--border-color);
+        padding: 8px 10px;
+      }
+      .lampiran-table th {
+        background-color: var(--secondary-navy);
+        color: white;
+        font-weight: 600;
+      }
+      /* Admin Panel UI */
+      .admin-container {
+        max-width: 100%;
+        background: white;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: left;
+      }
+      .admin-login-box {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .search-box {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        align-items: flex-end;
+      }
+      .search-box .form-group {
+        flex: 1;
+        min-width: 180px;
+        margin-bottom: 0;
+      }
+      .table-responsive {
+        overflow-x: auto;
+      }
+      table.admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      table.admin-table th,
+      table.admin-table td {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        text-align: left;
+        font-size: 0.9rem;
+      }
+      table.admin-table th {
+        background-color: var(--secondary-navy);
+        color: white;
+      }
+      /* Footer */
+      footer {
+        background-color: var(--secondary-navy);
+        color: white;
+        text-align: center;
+        padding: 4rem 5% 2rem 5%;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+      }
+      .qr-container {
+        margin: 25px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        display: inline-block;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .qr-container p {
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: var(--primary-gold);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Navigasi -->
+    <header>
+      <div class="logo">
+        <img
+          src="https://wyf.org.my/wp-content/uploads/2025/11/Logo-WYF-1-1024x641.png.webp"
+          alt="Logo WYF"
+        />
+        <span>Dewan <span>World Youth Foundation</span></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#utama">Utama</a></li>
+          <li><a href="#kalendar">Kalendar</a></li>
+          <li><a href="#fasiliti">Fasiliti</a></li>
+          <li><a href="#pakej">Pakej</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#layout">Layout Dewan</a></li>
+          <li><a onclick="tunjukAdminModal()">Panel Admin</a></li>
+          <li><a href="#hubungi">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Slider -->
+    <section id="utama" class="hero-slider">
+      <div class="slide active">
+        <img src="Hadapan Dewan.jpeg" alt="Dewan Utama WYF" />
+      </div>
+      <div class="slide">
+        <img src="Gambar Tepi WYF.jpeg" alt="Pandangan Sisi Dewan WYF" />
+      </div>
+      <div class="slide">
+        <img src="Ruang makan.jpeg" alt="Ruang Dalaman Dewan WYF" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Dewan World Youth Foundation</h1>
+        <p>
+          Suasana eksklusif dan elegan untuk majlis perkahwinan, seminar,
+          mesyuarat, dan acara peribadi berprestij anda.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn" onclick="tunjukBorang()">
+            Tempah Tarikh Anda
+          </button>
+          <a href="#galeri" class="btn btn-outline">📸 Lihat Galeri Dewan</a>
+        </div>
+      </div>
+      <button class="slider-btn prev-btn" onclick="tukarSlide(-1)">
+        &#10094;
+      </button>
+      <button class="slider-btn next-btn" onclick="tukarSlide(1)">
+        &#10095;
+      </button>
+      <div class="dots-container" id="dotsContainer"></div>
+    </section>
+
+    <!-- Semak Kalendar -->
+    <section id="kalendar" class="section offwhite-section">
+      <h2>Semak Kekosongan Tarikh</h2>
+      <p class="section-subtitle">
+        Sila semak kalendar di bawah untuk melihat tarikh yang sedia ada. Klik
+        pada tarikh dengan <strong>Tick Hijau (✅)</strong> untuk terus membuat
+        tempahan.
+      </p>
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button onclick="tukarBulan(-1)">&#10094;</button>
+          <h3 id="paparanBulanTahun">September 2026</h3>
+          <button onclick="tukarBulan(1)">&#10095;</button>
+        </div>
+        <div class="calendar-grid">
+          <div class="day-name">Ahd</div>
+          <div class="day-name">Isn</div>
+          <div class="day-name">Sel</div>
+          <div class="day-name">Rab</div>
+          <div class="day-name">Kha</div>
+          <div class="day-name">Jum</div>
+          <div class="day-name">Sab</div>
+        </div>
+        <div class="calendar-grid" id="gridHari"></div>
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-box available">✅</div>
+            <span>Kekosongan Tersedia</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box booked">❌</div>
+            <span>Telah Ditempah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fasiliti -->
+    <section id="fasiliti" class="section">
+      <h2>Keistimewaan Dewan</h2>
+      <p class="section-subtitle">
+        Fasiliti lengkap bagi memastikan kelancaran majlis anda.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Kapasiti Luas</h3>
+          <p>
+            Dewan utama berhawa dingin sepenuhnya yang mampu memuatkan sehingga
+            1,000 tetamu (mengikut format susunan acara).
+          </p>
+        </div>
+        <div class="card">
+          <h3>Lokasi & Parking Mudah</h3>
+          <p>
+            Lokasi strategik di Ayer Keroh dengan kemudahan ruang tempat letak
+            kereta yang luas dan percuma untuk tetamu. Muat sebanyak 50 kotak
+            parking.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Fasiliti Moden</h3>
+          <p>
+            Dilengkapi Pentas Utama, Bilik Persalinan VIP, Bilik Persediaan,
+            Skrin LED Monitor & Sistem Audio berkualiti.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pakej Dewan -->
+    <section
+      id="pakej"
+      class="section"
+      style="background-color: var(--bg-offwhite)"
+    >
+      <h2>Pakej Utama Dewan</h2>
+      <p class="section-subtitle">
+        Sewa ruang dewan yang serba lengkap mengikut keperluan anda.
+      </p>
+      <div style="display: flex; justify-content: center">
+        <div class="card package-card">
+          <img
+            src="Hadapan Dewan.jpeg"
+            alt="Sewa Dewan Sahaja"
+            class="card-img"
+          />
+          <div class="package-content">
+            <h3>Sewa Dewan Sahaja</h3>
+            <p class="price">RM 3,500</p>
+            <p>
+              Termasuk ruang dewan berhawa dingin, meja & kerusi asas, bilik
+              persalinan VVIP, serta kawasan parkir luas.
+            </p>
+          </div>
+          <div style="padding: 0 2rem 2rem">
+            <button
+              class="btn"
+              style="width: 100%; justify-content: center"
+              onclick="tunjukBorang()"
+            >
+              Pilih Pakej Ini
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeri & Review Suasana Dewan -->
+    <section id="galeri" class="section">
+      <h2>Galeri Suasana Dewan</h2>
+      <p class="section-subtitle">
+        Sila klik mana-mana gambar di bawah untuk melihat paparan imej yang
+        lebih besar dan jelas.
+      </p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Kad Galeri Dijana secara Dinamik -->
+      </div>
+    </section>
+
+    <!-- Layout Dewan Section -->
+    <section id="layout" class="section offwhite-section">
+      <h2>Layout Dewan</h2>
+      <p class="section-subtitle">
+        Pelan susunan ruang dewan mengikut jenis majlis untuk kemudahan perancangan anda. Klik pada gambar untuk paparan lebih besar.
+      </p>
+      <div class="layout-grid">
+        <div class="layout-card" onclick="bukaLightboxLayout('Stage Pelamin.jpeg', 'Pelan Majlis Perkahwinan')">
+          <h3>Pelan Majlis Perkahwinan</h3>
+          <img
+            src="Stage Pelamin.jpeg"
+            alt="Pelan Layout Stage Pelamin & Perkahwinan"
+            class="layout-img"
+          />
+        </div>
+        <div class="layout-card" onclick="bukaLightboxLayout('SusunanSeminar.jpeg', 'Pelan Seminar / Konvensyen')">
+          <h3>Pelan Seminar / Konvensyen</h3>
+          <img
+            src="SusunanSeminar.jpeg"
+            alt="Cadangan Layout Dewan Sitting 400"
+            class="layout-img"
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Pelan+Seminar+400+Kerusi';"
+          />
+        </div>
+        <div class="layout-card" onclick="bukaLightboxLayout('Makan Malam JUBLI.jpg', 'Pelan Majlis Makan Malam (Jubli Intan)')">
+          <h3>Pelan Majlis Makan Malam</h3>
+          <img
+            src="Makan Malam JUBLI.jpg"
+            alt="Pelan Majlis Makan Malam"
+            class="layout-img"
+          />
+        </div>
+        <div class="layout-card" onclick="bukaLightboxLayout('BloodDonation.jpeg', 'Pelan Program Derma Darah / Pameran')">
+          <h3>Pelan Program Derma Darah / Pameran</h3>
+          <img
+            src="BloodDonation.jpeg"
+            alt="Pelan Program Derma Darah / Pameran"
+            class="layout-img"
+          />
+        </div>
+        <div class="layout-card" onclick="bukaLightboxLayout('Rumah Terbuka WYF.jpg', 'Pelan Majlis Rumah Terbuka')">
+          <h3>Pelan Majlis Rumah Terbuka</h3>
+          <img
+            src="Rumah Terbuka WYF.jpg"
+            alt="Pelan Majlis Rumah Terbuka"
+            class="layout-img"
+          />
+        </div>
+        <div class="layout-card" onclick="bukaLightboxLayout('Pelan Laluan Kecemasan Dewan WYF.jpg', 'Pelan Laluan Kecemasan')">
+          <h3>Pelan Laluan Kecemasan</h3>
+          <img
+            src="Pelan Laluan Kecemasan Dewan WYF.jpg"
+            alt="Pelan Laluan Kecemasan Dewan WYF"
+            class="layout-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL LIGHTBOX GAMBAR BESAR -->
+    <div id="modalLightbox" class="lightbox-modal">
+      <span class="lightbox-close" onclick="tutupLightbox()">&times;</span>
+      <div class="lightbox-nav" id="lightboxNav">
+        <button class="lightbox-arrow" onclick="tukarGambarLightbox(-1)">
+          &#10094;
+        </button>
+        <button class="lightbox-arrow" onclick="tukarGambarLightbox(1)">
+          &#10095;
+        </button>
+      </div>
+      <div class="lightbox-container">
+        <img id="lightboxImg" class="lightbox-img" src="" alt="Paparan Besar" />
+        <p id="lightboxCaption" class="lightbox-caption"></p>
+      </div>
+    </div>
+
+    <!-- Modal Tempahan Multi-Step -->
+    <div id="modalTempahan" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="tutupBorang()">&times;</span>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+          "
+        >
+          <div
+            style="
+              flex: 1;
+              text-align: center;
+              font-weight: 700;
+              color: var(--primary-gold);
+            "
+            id="indicator1"
+          >
+            1. Kadar Harga
+          </div>
+          <div
+            style="
+              flex: 1;
+              text-align: center;
+              font-weight: 700;
+              color: #94a3b8;
+            "
+            id="indicator2"
+          >
+            2. Syarat-Syarat
+          </div>
+          <div
+            style="
+              flex: 1;
+              text-align: center;
+              font-weight: 700;
+              color: #94a3b8;
+            "
+            id="indicator3"
+          >
+            3. Borang Tempahan
+          </div>
+        </div>
+        <form id="bookingForm" onsubmit="hantarWhatsApp(event)">
+          <!-- LANGKAH 1 -->
+          <div id="step1" class="form-step">
+            <h3 style="margin-bottom: 1rem; color: var(--secondary-navy)">
+              Langkah 1: Maklumat Kadar Sewaan Dewan
+            </h3>
+            <div style="overflow-x: auto; margin-bottom: 1.5rem">
+              <table
+                style="
+                  width: 100%;
+                  border-collapse: collapse;
+                  font-size: 0.88rem;
+                  text-align: left;
+                "
+                border="1"
+                cellpadding="10"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr
+                    style="
+                      background-color: var(--secondary-navy);
+                      color: white;
+                    "
+                  >
+                    <th style="width: 8%">BIL.</th>
+                    <th>PERKARA</th>
+                    <th style="width: 28%">HARGA (RM)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center">1</td>
+                    <td>
+                      <strong>Sewaan Dewan World Youth Foundation.</strong>
+                      <ol type="i" style="margin-left: 18px; margin-top: 5px">
+                        <li>Penggunaan dewan berhawa dingin selama 9 jam</li>
+                        <li>
+                          Termasuk bilik persediaan, bekalan elektrik, air dan
+                          kemudahan tandas
+                        </li>
+                        <li>
+                          Deposit sewaan dewan yang perlu dibayar ialah RM
+                          1,000.00
+                        </li>
+                      </ol>
+                    </td>
+                    <td
+                      style="
+                        vertical-align: top;
+                        font-weight: bold;
+                        color: var(--primary-gold);
+                      "
+                    >
+                      RM 3,000.00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center">2</td>
+                    <td><strong>Caj Kebersihan</strong></td>
+                    <td style="font-weight: bold">RM 500.00</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center">3</td>
+                    <td><strong>Tambahan setiap jam berikutnya</strong></td>
+                    <td style="font-weight: bold">RM 150.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- LAMPIRAN SENARAI HARGA -->
+            <div
+              style="
+                background: #fffdf5;
+                border: 1px solid var(--primary-gold);
+                padding: 18px;
+                border-radius: 10px;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <h4
+                style="
+                  color: var(--secondary-navy);
+                  text-align: center;
+                  margin-bottom: 10px;
+                  text-transform: uppercase;
+                "
+              >
+                SENARAI HARGA SEWAAN DEWAN DAN PERALATAN
+              </h4>
+              <div
+                style="overflow-x: auto; max-height: 280px; overflow-y: auto"
+              >
+                <table class="lampiran-table">
+                  <thead>
+                    <tr>
+                      <th style="text-align: center; width: 8%">BIL</th>
+                      <th>NAMA BARANG/ PERALATAN</th>
+                      <th style="text-align: center; width: 25%">
+                        KUANTITI/UNIT
+                      </th>
+                      <th style="text-align: center; width: 30%">
+                        KADAR SEWAAN (RM)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="text-align: center">1</td>
+                      <td>Sarung kerusi</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 2.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">2</td>
+                      <td>Kerusi banquet bersarung</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 5.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">3</td>
+                      <td>Kerusi banquet tanpa sarung</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 3.50</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center" rowspan="2">4</td>
+                      <td rowspan="2">Meja seminar bersarung</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 10.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">2 unit</td>
+                      <td style="text-align: center">RM 15.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">5</td>
+                      <td>Meja seminar tanpa sarung</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 10.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">6</td>
+                      <td>Kerusi plastik</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 1.50</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">7</td>
+                      <td>Kiosk</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 50.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">8</td>
+                      <td>Meja sisi</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 10.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">9</td>
+                      <td>Troli kayu jati</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 10.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">10</td>
+                      <td>Projektor</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 100.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">11</td>
+                      <td>Skrin projector</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 100.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">12</td>
+                      <td>Platform mini</td>
+                      <td style="text-align: center">1 set</td>
+                      <td style="text-align: center">RM 100.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">13</td>
+                      <td>Kerusi kayu jati</td>
+                      <td style="text-align: center">1 set</td>
+                      <td style="text-align: center">RM 200.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">14</td>
+                      <td>Meja bulat</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 15.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">15</td>
+                      <td>Alas meja bulat</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 5.00</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">16</td>
+                      <td>Alas meja seminar</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 2.50</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: center">17</td>
+                      <td>Karpet Turki</td>
+                      <td style="text-align: center">1 unit</td>
+                      <td style="text-align: center">RM 50.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn"
+              style="width: 100%; justify-content: center"
+              onclick="pergiKeLangkah(2)"
+            >
+              Seterusnya (Syarat-Syarat) &raquo;
+            </button>
+          </div>
+
+          <!-- LANGKAH 2 -->
+          <div id="step2" class="form-step" style="display: none">
+            <h3 style="margin-bottom: 1rem; color: var(--secondary-navy)">
+              Langkah 2: Syarat-Syarat Penggunaan Dewan
+            </h3>
+            <div
+              class="tc-box"
+              style="max-height: 280px; overflow-y: auto; margin-bottom: 1.5rem"
+            >
+              <strong style="color: var(--secondary-navy); font-size: 0.95rem">
+                TERMA & SYARAT PENGGUNAAN DEWAN WORLD YOUTH FOUNDATION:
+              </strong>
+              <ol style="margin-left: 20px; margin-top: 8px">
+                <li>
+                  Tuan/Puan diminta memastikan supaya kebersihan Dewan World
+                  Youth Foundation, bilik persediaan dan tandas dijaga dengan
+                  baik.
+                </li>
+                <li>
+                  Segala kos akan ditanggung oleh pihak Tuan/Puan sekiranya
+                  peralatan yang digunakan rosak, kecuaian dan disengajakan
+                  termasuk keseluruhan ruang Dewan World Youth Foundation.
+                </li>
+                <li>
+                  Segala peralatan kerusi, meja dan sebagainya yang berada di
+                  dalam Dewan World Youth Foundation, bilik persediaan dan
+                  tandas adalah dilarang sama sekali diletakkan atau dibawa
+                  keluar.
+                </li>
+                <li>
+                  <strong>TIDAK DIBENARKAN</strong> sama sekali keseluruhan
+                  dinding atau permukaan Dewan World Youth Foundation, bilik
+                  persediaan dan tandas ditebuk atau dipaku untuk menggantung
+                  peralatan pihak penyewa.
+                </li>
+                <li>
+                  Menghisap rokok, minuman keras dan makanan
+                  <strong>TIDAK HALAL</strong> di dalam Dewan World Youth
+                  Foundation, bilik persediaan, tandas dan sekitarnya adalah
+                  <strong>DILARANG</strong> sama sekali.
+                </li>
+                <li>
+                  Sekiranya majlis yang diadakan berbentuk hiburan atau
+                  sebagainya Tuan/Puan
+                  <strong
+                    >perlu mematuhi etika sosial dan tidak menyalahi
+                    undang-undang</strong
+                  >.
+                </li>
+                <li>
+                  Sekiranya terdapat bencana alam atau apa-apa kejadian di luar
+                  jangkaan dan memerlukan penempatan sementara di kawasan dewan,
+                  pihak World Youth Foundation berhak membatalkan segala
+                  penyewaan pada tarikh tersebut. Oleh itu, penyewaan Tuan/Puan
+                  akan dibatalkan tanpa notis.
+                </li>
+                <li>
+                  Jika pembatalan penyewaan Dewan oleh pentadbiran ini, segala
+                  bayaran yang telah dijelaskan akan dikembalikan sepenuhnya.
+                </li>
+                <li>
+                  Jika pembatalan dibuat oleh pihak Tuan/Puan, bayaran yang
+                  telah dijelaskan tidak akan dikembalikan.
+                </li>
+              </ol>
+            </div>
+            <div style="margin-bottom: 1.5rem; text-align: left">
+              <label
+                style="
+                  font-weight: 600;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                "
+              >
+                <input type="checkbox" id="setujuSyarat" style="width: auto" />
+                Saya telah membaca dan bersetuju dengan semua syarat di atas.
+              </label>
+            </div>
+            <div style="display: flex; gap: 10px">
+              <button
+                type="button"
+                class="btn"
+                style="background: #64748b; flex: 1; justify-content: center"
+                onclick="pergiKeLangkah(1)"
+              >
+                &laquo; Kembali
+              </button>
+              <button
+                type="button"
+                class="btn"
+                style="flex: 2; justify-content: center"
+                onclick="semakPersetujuanDanLanjut()"
+              >
+                Seterusnya (Borang Tempahan) &raquo;
+              </button>
+            </div>
+          </div>
+
+          <!-- LANGKAH 3 -->
+          <div id="step3" class="form-step" style="display: none">
+            <h3 style="margin-bottom: 1rem; color: var(--secondary-navy)">
+              Langkah 3: Borang Tempahan Tarikh
+            </h3>
+            <div class="form-group">
+              <label for="nama">Nama Penuh</label>
+              <input
+                type="text"
+                id="nama"
+                required
+                placeholder="Contoh: Ahmad Albab"
+              />
+            </div>
+            <div class="form-group">
+              <label for="tarikh">Tarikh Majlis / Acara</label>
+              <input type="date" id="tarikh" required />
+            </div>
+            <div class="form-group">
+              <label>Masa Sewaan Dewan</label>
+              <div style="display: flex; gap: 10px; align-items: center">
+                <div style="flex: 1">
+                  <small
+                    style="color: #64748b; display: block; margin-bottom: 2px"
+                    >Masa Mula:</small
+                  >
+                  <input type="time" id="masaMula" required />
+                </div>
+                <span style="font-weight: bold; margin-top: 15px">hingga</span>
+                <div style="flex: 1">
+                  <small
+                    style="color: #64748b; display: block; margin-bottom: 2px"
+                    >Masa Tamat:</small
+                  >
+                  <input type="time" id="masaTamat" required />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="tujuan">Jenis Majlis / Purpose</label>
+              <select
+                id="tujuan"
+                required
+                onchange="
+                  kemaskiniMaklumatBayaran();
+                  toggleAcaraLain();
+                "
+              >
+                <option value="Perkahwinan">Majlis Perkahwinan</option>
+                <option value="Pertunangan / Bersanding">Majlis Pertunangan / Bersanding</option>
+                <option value="Hari Lahir / Akikah">Sambutan Hari Lahir / Akikah</option>
+                <option value="Jamuan Makan Malam / Tengah Hari">Jamuan Makan Malam / Tengah Hari</option>
+                <option value="Mesyuarat / Seminar">Mesyuarat / Seminar / Bengkel</option>
+                <option value="Ceramah / Keagamaan">Ceramah / Program Keagamaan</option>
+                <option value="Persidangan">Persidangan / Konvensyen</option>
+                <option value="Pameran / Jualan">Pameran / Ekspo Jualan</option>
+                <option value="Graduasi / Anugerah">Majlis Graduasi / Penyampaian Anugerah</option>
+                <option value="Pelbagai">Acara Lain (Sila Nyatakan)</option>
+              </select>
+            </div>
+            <div class="form-group" id="ruangAcaraLain" style="display: none">
+              <label for="nyatakanAcaraLain"
+                >Nyatakan Jenis Acara / Tujuan</label
+              >
+              <input
+                type="text"
+                id="nyatakanAcaraLain"
+                placeholder="Contoh: Kejohanan E-Sukan / Pertandingan"
+              />
+            </div>
+            <div class="form-group">
+              <label for="pax">Jumlah Tetamu / Pax (Maksimum 1000 pax)</label>
+              <input
+                type="number"
+                id="pax"
+                min="1"
+                max="1000"
+                placeholder="Masukkan jumlah pax (Contoh: 250)"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Pilihan Tambahan (Add On)</label>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  margin-top: 8px;
+                "
+              >
+                <label
+                  style="
+                    font-weight: normal;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    id="addonLED"
+                    value="LED Monitor / Projektor"
+                    style="width: auto; margin-right: 8px"
+                  />
+                  LED Monitor / Projekter & Skrin
+                </label>
+                <label
+                  style="
+                    font-weight: normal;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    id="addonKerusi"
+                    style="width: auto; margin-right: 8px"
+                    onchange="toggleInputKerusi()"
+                  />
+                  Tambahan Kerusi (Maksimum 300 unit)
+                </label>
+                <div id="ruangKerusi" style="display: none; padding-left: 25px">
+                  <input
+                    type="number"
+                    id="bilKerusi"
+                    min="1"
+                    max="300"
+                    placeholder="Bilangan Kerusi"
+                  />
+                </div>
+                <label
+                  style="
+                    font-weight: normal;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    id="addonMeja"
+                    style="width: auto; margin-right: 8px"
+                    onchange="toggleInputMeja()"
+                  />
+                  Tambahan Meja (Maksimum 30 unit)
+                </label>
+                <div id="ruangMeja" style="display: none; padding-left: 25px">
+                  <input
+                    type="number"
+                    id="bilMeja"
+                    min="1"
+                    max="30"
+                    placeholder="Bilangan Meja"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="payment-info">
+              <h4 style="color: var(--secondary-navy); margin-bottom: 8px">
+                💳 Maklumat Pembayaran Deposit
+              </h4>
+              <p style="font-size: 0.9rem; margin-bottom: 4px">
+                Bank: <strong>CIMB Bank</strong>
+              </p>
+              <p style="font-size: 0.9rem; margin-bottom: 4px">
+                No. Akaun: <strong>8004 7299 52</strong>
+              </p>
+              <p style="font-size: 0.9rem; margin-bottom: 8px">
+                Nama Akaun: <strong>World Youth Foundation</strong>
+              </p>
+              <p
+                id="labelJumlahDeposit"
+                style="font-weight: bold; color: #dc2626; font-size: 0.95rem"
+              >
+                Jumlah Deposit Diperlukan: RM 1,000 (Majlis Perkahwinan Sahaja)
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="resit" id="labelResit">
+                Muat Naik Bukti Pembayaran / Resit Deposit
+                <span id="tandaWajib" style="color: red">*</span>
+              </label>
+              <input type="file" id="resit" accept="image/*,.pdf" required />
+            </div>
+            <div style="display: flex; gap: 10px">
+              <button
+                type="button"
+                class="btn"
+                style="
+                  background-color: #64748b;
+                  flex: 1;
+                  justify-content: center;
+                "
+                onclick="pergiKeLangkah(2)"
+              >
+                &laquo; Kembali
+              </button>
+              <button
+                type="submit"
+                class="btn"
+                style="flex: 2; justify-content: center"
+              >
+                Hantar Tempahan & WhatsApp
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Admin Panel -->
+    <div id="modalAdmin" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="tutupAdminModal()">&times;</span>
+        <h2
+          style="
+            color: var(--secondary-navy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+          "
+        >
+          Panel Admin - Semakan Tempahan
+        </h2>
+        <div id="adminLogin" class="admin-container admin-login-box">
+          <div class="form-group">
+            <label for="adminId">ID Admin</label>
+            <input type="text" id="adminId" placeholder="Masukkan ID" />
+          </div>
+          <div class="form-group">
+            <label for="adminPass">Kata Laluan</label>
+            <input
+              type="password"
+              id="adminPass"
+              placeholder="Masukkan Kata Laluan"
+            />
+          </div>
+          <p
+            id="mesejRalat"
+            style="
+              color: red;
+              display: none;
+              text-align: center;
+              margin-bottom: 1rem;
+            "
+          >
+            Log Masuk Gagal. Periksa ID & Kata Laluan anda.
+          </p>
+          <button
+            class="btn"
+            style="width: 100%; justify-content: center"
+            onclick="semakLogin()"
+          >
+            Log Masuk
+          </button>
+        </div>
+        <div id="adminContent" class="admin-container" style="display: none">
+          <div style="text-align: right; margin-bottom: 1rem">
+            <button
+              class="btn btn-danger"
+              style="padding: 8px 20px; font-size: 0.88rem"
+              onclick="logKeluar()"
+            >
+              Log Keluar
+            </button>
+          </div>
+
+          <!-- TAPISAN MENGIKUT BULAN DAN TAHUN -->
+          <div class="search-box">
+            <div class="form-group">
+              <label for="pilihBulanAdmin">Pilih Bulan:</label>
+              <select id="pilihBulanAdmin" onchange="muatJadualAdmin()">
+                <option value="semua">Semua Bulan</option>
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Mac</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Jun</option>
+                <option value="07">Julai</option>
+                <option value="08">Ogos</option>
+                <option value="09" selected>September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Disember</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pilihTahunAdmin">Pilih Tahun:</label>
+              <select id="pilihTahunAdmin" onchange="muatJadualAdmin()">
+                <option value="semua">Semua Tahun</option>
+                <option value="2025">2025</option>
+                <option value="2026" selected>2026</option>
+                <option value="2027">2027</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 style="margin-bottom: 1rem; color: var(--secondary-navy)">
+            Senarai Tempahan Diterima
+          </h3>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Tarikh Majlis</th>
+                  <th>Masa</th>
+                  <th>Nama Pelanggan</th>
+                  <th>Jenis Majlis</th>
+                  <th>Pax</th>
+                  <th>Add On</th>
+                  <th>Resit</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="senaraiTempahanBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peta Google Maps -->
+    <section class="section" style="padding-bottom: 0">
+      <h2>Lokasi Dewan</h2>
+      <p class="section-subtitle">
+        Kemudahan lokasi utama kami di Ayer Keroh, Melaka.
+      </p>
+      <div
+        style="
+          max-width: 900px;
+          margin: 0 auto;
+          overflow: hidden;
+          border-radius: 16px;
+          box-shadow: var(--shadow-md);
+        "
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.749218206124!2d102.277413!3d2.247124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1e4e207d57a2f%3A0x6b77242d5423871!2sWorld%20Youth%20Foundation!5e0!3m2!1sms!2smy!4v1710000000000!5m2!1sms!2smy"
+          width="100%"
+          height="380"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="hubungi">
+      <h2 style="color: white; margin-bottom: 10px">Hubungi Kami</h2>
+      <p style="margin-bottom: 20px; color: #94a3b8">
+        World Youth Foundation, Jalan Tun Abdul Razak, 75450 Ayer Keroh, Melaka
+      </p>
+      <div
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          padding: 20px;
+          border-radius: 12px;
+          max-width: 500px;
+          margin: 0 auto 20px auto;
+          text-align: left;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        "
+      >
+        <p style="margin-bottom: 8px">
+          ☎ <strong>Pejabat:</strong>
+          <a href="tel:062310755" style="color: #fff; text-decoration: none"
+            >06-2310755</a
+          >
+        </p>
+        <p style="margin-bottom: 8px">
+          📱 <strong>Dayah:</strong>
+          <a
+            href="https://wa.me/60195933352"
+            target="_blank"
+            style="color: #fff; text-decoration: none"
+            >019-5933352</a
+          >
+        </p>
+        <p style="margin-bottom: 0">
+          ✉️ <strong>Email:</strong>
+          <a
+            href="mailto:wyfhq@wyf.org.my"
+            style="color: #fff; text-decoration: none"
+            >wyfhq@wyf.org.my</a
+          >
+        </p>
+      </div>
+      <div class="qr-container">
+        <p>Imbas QR Code untuk WhatsApp</p>
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wa.me/60195933352"
+          alt="QR Code WhatsApp"
+          style="border-radius: 8px; background: white; padding: 5px"
+        />
+      </div>
+      <p style="margin-top: 25px; font-size: 0.85rem; color: #64748b">
+        &copy; 2026 Dewan World Youth Foundation. Hak Cipta Terpelihara.
+      </p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <script>
+      // 1. Data Galeri Imej
+      const galleryData = [
+        {
+          src: "Hadapan Dewan.jpeg",
+          title: "Dewan Utama",
+          desc: "Pandangan Hadapan Dewan",
+        },
+        {
+          src: "Meja & Kerusi.jpg",
+          title: "Majlis Perkahwinan",
+          desc: "Hiasan Meja & Kerusi Bersarung",
+        },
+        {
+          src: "PentasWYF.jpeg",
+          title: "Pentas Utama",
+          desc: "Pencahayaan & Platform Mini",
+        },
+        {
+          src: "Ruang makan.jpeg",
+          title: "Ruang Banquet",
+          desc: "Suasana Jamuan Makan",
+        },
+        {
+          src: "Ruang Legar.jpeg",
+          title: "Ruang Legar / Lobi",
+          desc: "Selesa & Luas untuk Tetamu",
+        },
+        {
+          src: "LED Screen WYF.jpeg",
+          title: "Kemudahan Media",
+          desc: "LED Monitor & Skrin Projektor",
+        },
+        {
+          src: "Bilik VIP.jpeg",
+          title: "Bilik Persediaan",
+          desc: "Bilik Persalinan Khas VVIP",
+        },
+        {
+          src: "Parking.jpeg",
+          title: "Kawasan Parking",
+          desc: "Parking Luas & Percuma",
+        },
+      ];
+
+      let currentLightboxIndex = 0;
+      let isLayoutLightbox = false;
+
+      function renderGallery() {
+        const galleryGrid = document.getElementById("galleryGrid");
+        galleryGrid.innerHTML = "";
+        galleryData.forEach((item, index) => {
+          const card = document.createElement("div");
+          card.className = "gallery-card";
+          card.onclick = () => bukaLightbox(index);
+          card.innerHTML = `
+            <img src="${item.src}" alt="${item.title}" />
+            <div class="gallery-overlay">
+              <div class="gallery-info">
+                <h4>${item.title}</h4>
+                <p>${item.desc}</p>
+              </div>
+            </div>
+          `;
+          galleryGrid.appendChild(card);
+        });
+      }
+
+      function bukaLightbox(index) {
+        isLayoutLightbox = false;
+        document.getElementById("lightboxNav").style.display = "flex";
+        currentLightboxIndex = index;
+        kemaskiniLightbox();
+        document.getElementById("modalLightbox").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      // Fungsi khas untuk membuka gambar layout dewan
+      function bukaLightboxLayout(srcGambar, tajuk) {
+        isLayoutLightbox = true;
+        document.getElementById("lightboxNav").style.display = "none";
+        const img = document.getElementById("lightboxImg");
+        const cap = document.getElementById("lightboxCaption");
+        img.src = srcGambar;
+        cap.innerText = tajuk;
+        document.getElementById("modalLightbox").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function tutupLightbox() {
+        document.getElementById("modalLightbox").style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      function tukarGambarLightbox(direction) {
+        if (isLayoutLightbox) return;
+        currentLightboxIndex += direction;
+        if (currentLightboxIndex < 0) {
+          currentLightboxIndex = galleryData.length - 1;
+        } else if (currentLightboxIndex >= galleryData.length) {
+          currentLightboxIndex = 0;
+        }
+        kemaskiniLightbox();
+      }
+
+      function kemaskiniLightbox() {
+        const item = galleryData[currentLightboxIndex];
+        const img = document.getElementById("lightboxImg");
+        const cap = document.getElementById("lightboxCaption");
+        img.src = item.src;
+        cap.innerText = `${item.title} - ${item.desc}`;
+      }
+
+      document.addEventListener("keydown", function (e) {
+        const modal = document.getElementById("modalLightbox");
+        if (modal.style.display === "flex") {
+          if (e.key === "ArrowLeft") tukarGambarLightbox(-1);
+          if (e.key === "ArrowRight") tukarGambarLightbox(1);
+          if (e.key === "Escape") tutupLightbox();
+        }
+      });
+
+      // 2. Hero Slider
+      let currentSlide = 0;
+
+      function getSlides() {
+        return document.querySelectorAll(".slide");
+      }
+
+      function ciptaDots() {
+        const container = document.getElementById("dotsContainer");
+        const slides = getSlides();
+        container.innerHTML = "";
+        slides.forEach((_, index) => {
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+          if (index === 0) dot.classList.add("active");
+          dot.onclick = () => pergiKeSlide(index);
+          container.appendChild(dot);
+        });
+      }
+
+      function paparkanSlide(n) {
+        const slides = getSlides();
+        slides.forEach((slide) => slide.classList.remove("active"));
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot) => dot.classList.remove("active"));
+
+        if (n >= slides.length) currentSlide = 0;
+        if (n < 0) currentSlide = slides.length - 1;
+
+        slides[currentSlide].classList.add("active");
+        if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+      }
+
+      function tukarSlide(n) {
+        currentSlide += n;
+        paparkanSlide(currentSlide);
+      }
+
+      function pergiKeSlide(n) {
+        currentSlide = n;
+        paparkanSlide(currentSlide);
+      }
+
+      setInterval(() => {
+        tukarSlide(1);
+      }, 5000);
+
+      // 3. Kalendar & Tempahan
+      let tempahanData = JSON.parse(localStorage.getItem("tempahanData")) || [
+        {
+          nama: "Ahmad Albab",
+          tarikh: "2026-09-20",
+          masa: "08:00 - 17:00",
+          tujuan: "Perkahwinan",
+          pax: "500 Pax",
+          addon: "Tiada",
+        },
+        {
+          nama: "Siti Nurhaliza",
+          tarikh: "2026-10-15",
+          masa: "09:00 - 18:00",
+          tujuan: "Jamuan Makan Malam / Tengah Hari",
+          pax: "300 Pax",
+          addon: "LED Monitor",
+        },
+      ];
+
+      let tarikhSemasa = new Date(2026, 8, 1);
+      const namaBulan = [
+        "Januari",
+        "Februari",
+        "Mac",
+        "April",
+        "Mei",
+        "Jun",
+        "Julai",
+        "Ogos",
+        "September",
+        "Oktober",
+        "November",
+        "Disember",
+      ];
+
+      function janaKalendar() {
+        const tahun = tarikhSemasa.getFullYear();
+        const bulan = tarikhSemasa.getMonth();
+
+        document.getElementById("paparanBulanTahun").innerText =
+          `${namaBulan[bulan]} ${tahun}`;
+
+        const gridHari = document.getElementById("gridHari");
+        gridHari.innerHTML = "";
+
+        const hariPertama = new Date(tahun, bulan, 1).getDay();
+        const jumlahHari = new Date(tahun, bulan + 1, 0).getDate();
+
+        for (let i = 0; i < hariPertama; i++) {
+          const kotakKosong = document.createElement("div");
+          kotakKosong.classList.add("calendar-day", "empty");
+          gridHari.appendChild(kotakKosong);
+        }
+
+        for (let hari = 1; hari <= jumlahHari; hari++) {
+          const kotakHari = document.createElement("div");
+          kotakHari.classList.add("calendar-day");
+
+          const stringBulan = String(bulan + 1).padStart(2, "0");
+          const stringHari = String(hari).padStart(2, "0");
+          const tarikhFormatPenuh = `${tahun}-${stringBulan}-${stringHari}`;
+
+          const dahDitempah = tempahanData.some(
+            (t) => t.tarikh === tarikhFormatPenuh,
+          );
+
+          if (dahDitempah) {
+            kotakHari.classList.add("booked");
+            kotakHari.innerHTML = `<span>${hari}</span> <span style="font-size: 0.75rem; margin-top: 2px;">❌</span>`;
+          } else {
+            kotakHari.classList.add("available");
+            kotakHari.innerHTML = `<span>${hari}</span> <span style="font-size: 0.75rem; margin-top: 2px;">✅</span>`;
+            kotakHari.onclick = () => {
+              document.getElementById("tarikh").value = tarikhFormatPenuh;
+              tunjukBorang();
+            };
+          }
+
+          gridHari.appendChild(kotakHari);
+        }
+      }
+
+      function tukarBulan(arah) {
+        tarikhSemasa.setMonth(tarikhSemasa.getMonth() + arah);
+        janaKalendar();
+      }
+
+      // Borang Multi-Step
+      function pergiKeLangkah(langkah) {
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "none";
+
+        document.getElementById("indicator1").style.color =
+          langkah >= 1 ? "var(--primary-gold)" : "#94A3B8";
+        document.getElementById("indicator2").style.color =
+          langkah >= 2 ? "var(--primary-gold)" : "#94A3B8";
+        document.getElementById("indicator3").style.color =
+          langkah >= 3 ? "var(--primary-gold)" : "#94A3B8";
+
+        document.getElementById(`step${langkah}`).style.display = "block";
+      }
+
+      function semakPersetujuanDanLanjut() {
+        if (!document.getElementById("setujuSyarat").checked) {
+          alert("Sila tanda persetujuan dengan syarat-syarat penggunaan.");
+          return;
+        }
+        pergiKeLangkah(3);
+      }
+
+      function kemaskiniMaklumatBayaran() {
+        const tujuan = document.getElementById("tujuan").value;
+        const labelDeposit = document.getElementById("labelJumlahDeposit");
+        const resitInput = document.getElementById("resit");
+        const tandaWajib = document.getElementById("tandaWajib");
+
+        if (tujuan === "Perkahwinan") {
+          labelDeposit.innerText =
+            "Jumlah Deposit Diperlukan: RM 1,000 (Majlis Perkahwinan)";
+          labelDeposit.style.color = "#DC2626";
+          resitInput.required = true;
+          tandaWajib.style.display = "inline";
+        } else {
+          labelDeposit.innerText =
+            "Jumlah Deposit Diperlukan: Tiada Deposit (Acara Lain)";
+          labelDeposit.style.color = "#22C55E";
+          resitInput.required = false;
+          tandaWajib.style.display = "none";
+        }
+      }
+
+      function toggleAcaraLain() {
+        const tujuan = document.getElementById("tujuan").value;
+        document.getElementById("ruangAcaraLain").style.display =
+          tujuan === "Pelbagai" ? "block" : "none";
+      }
+
+      function toggleInputKerusi() {
+        const checked = document.getElementById("addonKerusi").checked;
+        document.getElementById("ruangKerusi").style.display = checked
+          ? "block"
+          : "none";
+      }
+
+      function toggleInputMeja() {
+        const checked = document.getElementById("addonMeja").checked;
+        document.getElementById("ruangMeja").style.display = checked
+          ? "block"
+          : "none";
+      }
+
+      function tunjukBorang() {
+        kemaskiniMaklumatBayaran();
+        toggleAcaraLain();
+        pergiKeLangkah(1);
+        document.getElementById("modalTempahan").style.display = "flex";
+      }
+
+      function tutupBorang() {
+        document.getElementById("modalTempahan").style.display = "none";
+      }
+
+      function hantarWhatsApp(event) {
+        event.preventDefault();
+        const nama = document.getElementById("nama").value;
+        const tarikh = document.getElementById("tarikh").value;
+        let tujuan = document.getElementById("tujuan").value;
+        const masaMula = document.getElementById("masaMula").value;
+        const masaTamat = document.getElementById("masaTamat").value;
+
+        if (tujuan === "Pelbagai") {
+          tujuan =
+            document.getElementById("nyatakanAcaraLain").value || "Pelbagai";
+        }
+
+        tempahanData.push({
+          nama,
+          tarikh,
+          masa: `${masaMula} - ${masaTamat}`,
+          tujuan,
+          pax: `${document.getElementById("pax").value} Pax`,
+          addon: "Daftar",
+        });
+
+        localStorage.setItem("tempahanData", JSON.stringify(tempahanData));
+
+        janaKalendar();
+        muatJadualAdmin();
+
+        const mesej = `Salam Dewan WYF,\nSaya ingin mengesahkan tempahan:\n- *Nama:* ${nama}\n- *Tarikh:* ${tarikh}\n- *Masa:* ${masaMula} - ${masaTamat}\n- *Jenis Majlis:* ${tujuan}`;
+        window.open(
+          `https://wa.me/60195933352?text=${encodeURIComponent(mesej)}`,
+          "_blank",
+        );
+
+        tutupBorang();
+      }
+
+      // Panel Admin
+      function tunjukAdminModal() {
+        document.getElementById("modalAdmin").style.display = "flex";
+      }
+
+      function tutupAdminModal() {
+        document.getElementById("modalAdmin").style.display = "none";
+      }
+
+      function semakLogin() {
+        if (
+          document.getElementById("adminId").value === "DewanWYF" &&
+          document.getElementById("adminPass").value === "123456789"
+        ) {
+          document.getElementById("adminLogin").style.display = "none";
+          document.getElementById("adminContent").style.display = "block";
+          muatJadualAdmin();
+        } else {
+          document.getElementById("mesejRalat").style.display = "block";
+        }
+      }
+
+      function logKeluar() {
+        document.getElementById("adminLogin").style.display = "block";
+        document.getElementById("adminContent").style.display = "none";
+      }
+
+      function muatJadualAdmin() {
+        const tbody = document.getElementById("senaraiTempahanBody");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+
+        const bulanDipilih = document.getElementById("pilihBulanAdmin").value;
+        const tahunDipilih = document.getElementById("pilihTahunAdmin").value;
+
+        const tempahanDitapis = tempahanData.filter((item) => {
+          if (!item.tarikh) return false;
+          const [tahun, bulan] = item.tarikh.split("-");
+          
+          const padanBulan = bulanDipilih === "semua" || bulan === bulanDipilih;
+          const padanTahun = tahunDipilih === "semua" || tahun === tahunDipilih;
+
+          return padanBulan && padanTahun;
+        });
+
+        if (tempahanDitapis.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">Tiada rekod tempahan untuk bulan/tahun yang dipilih.</td></tr>`;
+          return;
+        }
+
+        tempahanDitapis.forEach((item, index) => {
+          const indexAsal = tempahanData.indexOf(item);
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.tarikh}</td>
+            <td>${item.masa || "-"}</td>
+            <td>${item.nama}</td>
+            <td>${item.tujuan}</td>
+            <td>${item.pax}</td>
+            <td>${item.addon || "Tiada"}</td>
+            <td>-</td>
+            <td><button class="btn btn-danger" style="padding: 4px 8px; font-size: 0.8rem;" onclick="padamTempahan(${indexAsal})">Padam</button></td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+
+      function padamTempahan(index) {
+        if (confirm("Padam rekod ini?")) {
+          tempahanData.splice(index, 1);
+          localStorage.setItem("tempahanData", JSON.stringify(tempahanData));
+          janaKalendar();
+          muatJadualAdmin();
+        }
+      }
+
+      // Inisialisasi
+      document.addEventListener("DOMContentLoaded", function () {
+        ciptaDots();
+        renderGallery();
+        janaKalendar();
+        muatJadualAdmin();
+      });
+
+      // Klik luar modal untuk tutup
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("modalTempahan"))
+          tutupBorang();
+        if (event.target == document.getElementById("modalAdmin"))
+          tutupAdminModal();
+      };
+    </script>
+  </body>
+</html>
